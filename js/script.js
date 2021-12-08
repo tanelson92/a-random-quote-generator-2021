@@ -49,7 +49,9 @@ let authors = [
 
 /***
  * `getRandomQuote` function
+ * @return {object} an object containing (author, source)
 ***/
+
 function getRandomQuote() {
   let number = Math.floor(Math.random() * (authors.length - 1));
   return authors[number];
@@ -58,13 +60,13 @@ function getRandomQuote() {
 
 /***
  * `printQuote` function
+ * @return {string} - An HTML string containing an author and source. 
 ***/
+
 function printQuote() {
   let quote = getRandomQuote();
-  let newQuote = `
-    <p class='quote'>${quote.quote}</p>
-    <p class='source'>${quote.source}</p>
-  `;
+  let newQuote = `<p class='quote'>${quote.quote}</p>
+  <p class='source'>${quote.source}</p>`;
   document.querySelector('#quote-box').innerHTML = newQuote;
 }
 
