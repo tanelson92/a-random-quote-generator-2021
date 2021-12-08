@@ -60,8 +60,12 @@ function getRandomQuote() {
  * `printQuote` function
 ***/
 function printQuote() {
-  let quotes = getRandomQuote();
-  let html = ``;
+  let quote = getRandomQuote();
+  let newQuote = `
+    <p class='quote'>${quote.quote}</p>
+    <p class='source'>${quote.source}</p>
+  `;
+  document.querySelector('#quote-box').innerHTML = newQuote;
 }
 
 
