@@ -11,7 +11,10 @@ project 1 - A Random Quote Generator
  * `quotes` array 
  * @property {string} quotes[0].source - The author of the quote.
  * @property {string} quotes[0].quote - The quote provided by the author.
+ * @property {string} quotes[0].year - The year of the quote.
+ * @property {string} quotes[0].citation - The source of the quote.
 ***/
+
 let quotes = [
   {
       source: 'Lao Tzu',
@@ -64,6 +67,7 @@ function getRandomQuote() {
 
 /***
  * `printQuote` function
+ * Builds a new quote from the existing quotes array.
  * @return {string} - An HTML string containing an author and source. 
 ***/
 
@@ -80,20 +84,20 @@ function printQuote() {
   }
   newQuote += `</p>`;
   document.querySelector('#quote-box').innerHTML = newQuote;
-  setInterval(function() {
-    printQuote();
-    setRandomBackground();
-  }, 5000);
 }
 
 /***
  * `setRandomBackground` function
+ *  Generates a random series of values to adjust the background color of the body to. 
  */
 
 function setRandomBackground() {
     let body = document.querySelector('body');
-    let number = Math.floor(Math.random() * 255);
-    body.style.backgroundColor = `rgb(${number},${number},${number})`;
+    let colors = [];
+    for (let i = 0; i < 3; i++) {
+      colors[i] = Math.floor(Math.random() * 255);
+    }
+    body.style.backgroundColor = `rgb(${colors[0]},${colors[1]},${colors[2]})`;
 }
 
 /***
@@ -102,3 +106,13 @@ function setRandomBackground() {
 ***/
 
 document.getElementById('load-quote').addEventListener("click", printQuote, false);
+
+/**
+ * `changeQuoteBackground` function
+ * Changes the background color and quote displayed every 5 seconds. 
+ */
+
+const changeQuoteBackground = setInterval(function() {
+  printQuote();
+  setRandomBackground();
+}, 5000);
